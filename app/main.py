@@ -101,14 +101,22 @@ def move():
     self_1y = data['you']['body'][1]['y']
     self_1x = data['you']['body'][1]['x']
     tailLen = len(data['you']['body'])
-    
-    allTailLen = len(data['board']['snakes'][count]['body'][count]['y'])
+    '''
+    numOfSnakes = len(data['board']['snakes'])
+    print "NUM OF SNAKES: ", numOfSnakes
+    numCount = 0
+    allTailLen = 0
+    while numCount < numOfSnakes:
+        allTailLen += len(data['board']['snakes'][count]['body']['y'])
+        numCount += 1
+    print "NUM OF TOTAL TAILS: ",allTailLen
     count = 0
-    while count < 10:
+    while count < allTailLen:
         otherSnakesY[count] = data['board']['snakes'][count]['body'][count]['y']
         otherSnakesX[count] = data['board']['snakes'][count]['body'][count]['x']
-        cout += 1
-    print "TESTING DATA COLLECTION: ", type(data['board']['snakes'][0]['body'][0]['y'])
+        count += 1
+    '''
+
     '''
     Analysis of data:
     '''
@@ -258,7 +266,7 @@ def move():
         if checkDown(moves):   #Exit wallride
             removeLeft(moves)
             removeRight(moves)
-    if self_0y == 11:
+    if self_0y == 10:
         removeDown(moves)
         if checkUp(moves):
             removeLeft(moves)
@@ -268,7 +276,7 @@ def move():
         if checkRight(moves):
             removeUp(moves)
             removeDown(moves)
-    if self_0x == 11:
+    if self_0x == 10:
         removeRight(moves)
         if checkLeft(moves):
             removeUp(moves)
@@ -277,13 +285,13 @@ def move():
     if self_0y == 1:
         if checkDown(moves) or checkLeft(moves) or checkRight(moves):
             removeUp(moves)
-    if self_0y == 10:
+    if self_0y == 9:
         if checkUp(moves) or checkLeft(moves) or checkRight(moves):
             removeDown(moves)
     if self_0x == 1:
         if checkUp(moves) or checkDown(moves) or checkRight(moves):
             removeLeft(moves)
-    if self_0x == 10:
+    if self_0x == 9:
         if checkUp(moves) or checkDown(moves) or checkLeft(moves):
             removeRight(moves)
     #Avoid other snakes:
